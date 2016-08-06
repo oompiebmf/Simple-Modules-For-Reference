@@ -1,0 +1,6 @@
+import requests
+
+r = requests.get('https://github.com/timeline.json')
+print r.status_code #get status code
+print r.text # get content of servers response
+print r.headers # http://www.pythonforbeginners.com/requests/using-requests-in-python
