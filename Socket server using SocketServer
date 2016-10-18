@@ -1,0 +1,18 @@
+import SocketServer
+
+serveraddr = ("0.0.0.0", 9000)
+
+class Echohandler(SocketServer.BaseRequestHandler):
+    
+    def handle(self):
+        print("Got Connection from:", self.client_address)
+        data =''
+        while len(data): #echoes input back to client, put anythong you nlike here
+            data = self.request.recv(1024)
+            self.request.send(data)
+            
+        print("Client left")
+
+server = SocketServer.TCPServer(serveraddr, Echohandler) #Echohandler is a class that will handle client connections
+
+server.serve_forever()
