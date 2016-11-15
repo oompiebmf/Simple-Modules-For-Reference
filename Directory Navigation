@@ -1,0 +1,13 @@
+import os
+
+os.getcwd()
+#os.mkdir("toot")
+os.listdir(".")
+#Quick check for files or dir-
+for item in os.listdir("."):
+    if os.path.isfile(item):
+        print(item + " is a file")
+    elif os.path.isdir(item):
+        print( item + " is a dir")
+    else:
+        print("Unknown")
