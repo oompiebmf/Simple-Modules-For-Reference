@@ -1,0 +1,23 @@
+import os
+
+
+New binaries:
+
+os.execvp("ping", ["ping", "127.0.0.1"]) NOTE!! this turfs the existing process and starts the command ping
+
+def child_process():
+    print("I am the child process and my pid is: %d" %os.getpid())
+    print("The process is exiting")
+
+def parent_process():
+    print(" I am the parent process PID: %d" %os.getpid())
+    childpid = os.fork()
+    if childpid == 0:
+        child_process()
+    else:
+        print("We are in paren process")
+        print("OUr child has a process ID of: %d" %childpid)
+    while True:
+        pass
+    
+parent_process()
