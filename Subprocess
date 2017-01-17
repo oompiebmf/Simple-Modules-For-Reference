@@ -1,0 +1,13 @@
+import subprocess
+
+#subprocess.call(['ps', 'aux'])
+
+'''If  you would like to process output use the followwing'''
+
+#lines = subprocess.check_output(['ps', '-la'])
+#lines_list = lines.split('\n')
+
+'''to interact with stdin and stdout use but more use in python shell'''
+handle = subprocess.Popen('ls', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True)
+
+handle.stdout.read()
