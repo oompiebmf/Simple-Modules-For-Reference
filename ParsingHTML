@@ -1,0 +1,29 @@
+from bs4 import BeautifulSoup
+import urllib
+
+html = urllib.urlopen('http://securitytube.net/video/3000')
+
+bt = BeautifulSoup(html.read(), "lxml")
+
+print bt.title
+print bt.meta
+
+'''<title>Defcon 19  - The Art Of Trolling</title>
+<meta content="6xTaa3p8o4OQd0L-iD2eRvaDjJR8rxUdSyZ1Etm5LMI" name="google-site-v'''
+
+allMetaTags = bt.find_all('meta') # can also take regex
+print allMetaTags[0] #<meta content="6xTaa3p8o4OQd0L-iD2eRvaDjJR8rxUdSyZ1Etm5LMI" name="google-site-verification"/>
+print allMetaTags[0]['content'] # now key value pair 6xTaa3p8o4OQd0L-iD2eRvaDjJR8rxUdSyZ1Etm5LMI
+
+all_links = bt.find_all('a') #to find links, this finds the all a tags that might have href following
+for links in all_links:
+    print links['href']
+    
+'''/groups?operation=view&groupId=10
+/groups?operation=view&groupId=9
+/groups?operation=view&groupId=7
+/groups?operation=view&groupId=6
+/groups?operation=view&groupId=5
+/groups?operation=view&gr'''
+
+print bt.get_text() #raw text, if yoiuj wnat to do data mining using keywords
