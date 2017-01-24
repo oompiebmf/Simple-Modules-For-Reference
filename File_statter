@@ -1,0 +1,8 @@
+#! /usr/bin/python
+
+import os
+import sys
+
+for item in os.listdir("."):
+    filestat = os.stat(item)
+    print ("File %s is: %d big and the owner is %s" % (item, filestat.st_size, filestat.st_uid ))
