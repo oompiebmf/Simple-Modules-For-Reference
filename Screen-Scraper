@@ -1,0 +1,38 @@
+from bs4 import BeautifulSoup
+import urllib
+
+httpresponse = urllib.urlopen('http://securitytube.net/video/3000')
+
+print httpresponse.code
+
+html = httpresponse.read()
+
+bs = BeautifulSoup(html, "lxml")
+descr = bs.find('div', id="fb-root")
+'''200
+<div id="fb-root"></div>
+'''
+print descr
+
+alllinks = descr.find_all('a')
+print alllinks
+print descr.get_text()
+
+videolink = bs.find('iframe', {'title' : 'YouTube video player'})
+'''Note, that you cna put multiple conditions in the dict above to get what you want:
+videolink = bs.find('iframe', {'title' : 'YouTube video player', 'height' : '390'})
+'''
+videolink2 = bs.find('iframe', {'title' : 'YouTube video player', 'height' : '390'})
+print videolink
+print videolink2
+print videolink['src']
+'''<iframe allowfullscreen="" frameborder="0" height="390" src="http://www.youtube.com/embed/3wAGdAOvu3I" title="YouTube video player" width="640"></iframe>
+<iframe allowfullscreen="" frameborder="0" height="390" src="http://www.youtube.com/embed/3wAGdAOvu3I" title="YouTube video player" width="640"></iframe>
+http://www.youtube.com/embed/3wAGdAOvu3I'''
+
+forms = bs.find_all('form')
+print forms
+'''[<form action="">
+<input name="q" placeholder="Search" type="text" value=""/>
+<button type="submit"></button>
+</form>]'''
