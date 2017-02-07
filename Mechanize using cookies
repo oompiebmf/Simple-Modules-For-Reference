@@ -1,0 +1,25 @@
+import mechanize
+cookies = mechanize.CookieJar()
+br1 = mechanize.Browser()
+br1.set_cookiejar(cookies)
+
+br1.open('http://192.168.0.60/dvwa/login.php')
+
+for form in br1.forms():
+    print form
+
+br1.select_form(nr=0)
+
+br1.form['username'] = 'admin'
+br1.form['password'] = 'password'
+br1.submit()
+br1.response()
+
+print cookies '''can see 2 cookies created'''
+print cookies[0]
+print cookies[1]
+print("Now we are opening up Browser 2")
+br2 = mechanize.Browser()
+br2.set_cookiejar(cookies)
+br2.open('http://192.168.0.60/dvwa/')
+print br2.title()
