@@ -1,0 +1,34 @@
+import mechanize
+cookies = mechanize.CookieJar()
+br = mechanize.Browser()
+br.open("https://groceries.a****.com")
+
+for form in br.forms():
+    print form
+'''<POST javascript:function(){return;} application/x-www-form-urlencoded
+  <TextControl(postcode=)>
+  <SubmitControl(<None>=Check my postcode) (readonly)>>'''
+
+br.select_form(nr=0)
+
+br.form['postcode'] = 'e144ha'
+
+br.submit()
+
+'''then it fails as it returns xhr data! but you get the idea'''
+'''IMagine you have logged into app'''
+for link in br.links():
+    print link.url + " : " + link.text
+    
+new_link = br.click_link(text='moodle(IMG)Change password')
+
+br.open(new_link)
+
+'''want to see what forms are available for filling in:'''
+
+for form in br.forms():
+    print form
+    
+'''then we can see forms taht can be manipulated'''
+
+ 
