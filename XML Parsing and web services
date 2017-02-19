@@ -1,0 +1,36 @@
+'''<?xml version="1.0" encoding="utf-8"?>
+<item>
+            <title>Specialized Reviewers wanted for DEF CON 25 CFP!</title>
+            <link>https://www.defcon.org/html/links/dc-news.html#dc25cfreviewers</link>
+            <description><![CDATA[<p><img src="https://www.defcon.org/images/defcon-25/post-images/dc-25-cfr.jpg" alt="DEF CON Call for reviewers image"></p>
+
+                <p>Greetz!</p>
+
+'''
+
+
+from bs4 import BeautifulSoup
+
+file =  '/root/defconrss.xml'
+
+xml = open(file, 'r')
+
+bs = BeautifulSoup(xml, "xml")
+
+for item in bs.find_all('item'):
+    print item.title.string
+    print item.link.string
+    
+'''DEF CON CFP Review Board AMA on Reddit next Week!
+Specialized Reviewers wanted for DEF CON 25 CFP!
+DEF CON Jackets on Sale!
+Jeff Moss Named Commissoner on GSCSC!
+DEF CON 25 Secret Stash for February!
+DEF CON 25 Call for Papers and Call For Worksh'''
+'''https://www.defcon.org/html/links/dc-archives/dc-21-archive.html
+https://www.youtube.com/user/DEFCONConference
+https://www.defcon.org/index.html#dcdocextras
+https://www.defcon.org/html/links/dc_press/dc_press.html
+https://www.defcon.org/html/links/dc-ctf.html
+http://youtu.be/SUhyeY0Fsvw'''
+
